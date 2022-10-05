@@ -180,7 +180,7 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
-        // return Event::join('workshops')
+        // return records where child table matching the condition
         return Event::with(['workshops'])
             ->whereHas('workshops', function ($query) {
                 $query->where('start', '>', Carbon::now());
