@@ -186,6 +186,5 @@ class EventsController extends BaseController
                 $query->where('start', '>', Carbon::now());
             })
             ->get();
-
     }
 }

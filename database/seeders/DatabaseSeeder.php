@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
         Workshop::create([
             'start' => $date->clone()->setMonth(2)->setHour(10),
             'end' => $date->clone()->setMonth(2)->setHour(16),
-            'name' => 'Illuminate your knowledge of the laravel code base',
+            //'name' => 'Illuminate your knowledge of the laravel code base',
             'event_id' => $lcon1->id
         ]);
 
@@ -84,14 +84,14 @@ class DatabaseSeeder extends Seeder
         Workshop::create([
             'start' => $date->clone()->setMonth(10)->setHour(10),
             'end' => $date->clone()->setMonth(10)->setHour(16),
-            'name' => 'The new Eloquent - load more with less',
+            //'name' => 'The new Eloquent - load more with less',
             'event_id' => $lcon2->id
         ]);
 
         Workshop::create([
             'start' => $date->clone()->setMonth(11)->setHour(10),
             'end' => $date->clone()->setMonth(11)->setHour(17),
-            'name' => 'AutoEx - handles exceptions 100% automatic',
+            //'name' => 'AutoEx - handles exceptions 100% automatic',
             'event_id' => $lcon2->id
         ]);
 
@@ -102,14 +102,14 @@ class DatabaseSeeder extends Seeder
         Workshop::create([
             'start' => $date->clone()->setMonth(8)->setHour(10),
             'end' => $date->clone()->setMonth(8)->setHour(18),
-            'name' => '#NoClass pure functional programming',
+            //'name' => '#NoClass pure functional programming',
             'event_id' => $rcon->id
         ]);
 
         Workshop::create([
             'start' => $date->clone()->setMonth(11)->setHour(9),
             'end' => $date->clone()->setMonth(11)->setHour(17),
-            'name' => 'Navigating the function jungle',
+            //'name' => 'Navigating the function jungle',
             'event_id' => $rcon->id
         ]);
     }
