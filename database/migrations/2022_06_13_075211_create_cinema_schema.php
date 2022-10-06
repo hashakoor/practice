@@ -36,7 +36,57 @@ class CreateCinemaSchema extends Migration
      */
     public function up()
     {
-        throw new \Exception('implement in coding task 4, you can ignore this exception if you are just running the initial migrations.');
+        // add type field in users table
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('type')->default('customer');
+        });
+
+        Schema::create('films', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamp('release_date');
+            $table->string('genre')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('show_rooms', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('type')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('seats', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
+            $table->decimal('price', 22, 4)->default(0.0);
+            $table->bigInteger('show_room_id')->unsigned();
+            $table->foreign('show_room_id')->references('id')->on('show_rooms')->onDelete('cascade');
+            $table->string('seat_no');
+            $table->timestamps();
+        });
+
+        Schema::create('shows', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('show_room_id')->unsigned();
+            $table->foreign('show_room_id')->references('id')->on('show_rooms')->onDelete('cascade');
+            $table->bigInteger('film_id')->unsigned();
+            $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
+            $table->timestamp('date');
+            $table->timestamps();
+        });
+
+        Schema::create('bookings', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('show_id')->unsigned();
+            $table->foreign('show_id')->references('id')->on('shows')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('seat_id')->unsigned();
+            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
+            $table->timestamp('date');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -46,5 +96,10 @@ class CreateCinemaSchema extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('films');
+        Schema::dropIfExists('show_rooms');
+        Schema::dropIfExists('seats');
+        Schema::dropIfExists('shows');
+        Schema::dropIfExists('bookings');
     }
 }

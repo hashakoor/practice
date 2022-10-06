@@ -52,6 +52,7 @@ class MenuController extends BaseController
                             "id": 4,
                             "name": "The new Eloquent - load more with less",
                             "url": "/events/laracon/workshops/eloquent",
+
                             "parent_id": 2,
                             "created_at": "2021-04-27T15:35:15.000000Z",
                             "updated_at": "2021-04-27T15:35:15.000000Z",
